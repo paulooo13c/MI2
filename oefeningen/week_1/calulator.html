@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>Rekenmachine</title>
+    <style>
+        div.calc{
+            width: 50%;
+            height: 25%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content:space-around
+            
+        }
+        input {
+            margin: 15px;
+            width: 50px;
+        }
+        </style>    
+    </head>
+   <body>
+    <div class="calc">
+        <p id="demo"></p>
+        <input type="button" id="btn1" onclick="myFunction(this)" value="1">
+        <input type="button" id="btn2" onclick="myFunction(this)" value="2">
+        <input type="button" id="btn3" onclick="myFunction(this)" value="3">
+        <input type="button" id="btn4" onclick="myFunction(this)" value="4">
+        <input type="button" id="btn5" onclick="myFunction(this)" value="5">
+        <input type="button" id="btn6" onclick="myFunction(this)" value="6">
+        <input type="button" id="btn7" onclick="myFunction(this)" value="7">
+        <input type="button" id="btn8" onclick="myFunction(this)" value="8">
+        <input type="button" id="btn9" onclick="myFunction(this)" value="9">
+        <input type="button" id="btn10" onclick="myfunction(this)" value="+">
+        <input type="button" id="btn10" onclick="myFunction(this)" value="0">
+        <input type="button" id="btn11" onclick="myfunction(this)" value="-">
+        <input type="button" id="btn12" onclick="myfunction(this)" value="*">
+        <input type="button" id="btn13" onclick="myfunction(this)" value="/">
+        <input type="button" id="btn11" onclick="myfunction(this)" value="="> </div>
+    <script>
+        function myFunction(button) {
+            var x = button.value;
+            document.getElementById("demo").innerHTML = x;
+        }
+    </script>
+</body>
+</html>
