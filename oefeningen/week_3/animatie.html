@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> </title>
+    <style>
+        .vierkant {
+            background-color: red;
+            height: 60px;
+            width: 60px;
+            margin: auto;
+            display: none;
+        }
+        h1{
+            display: none;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <script>
+         $(document).ready(function () {
+            $("#show").click(function () {
+                $("h1").fadeToggle();
+                $("p").fadeToggle();
+                $(".vierkant").fadeToggle();
+            });
+        });
+    </script>
+    <h1>Animatie met jquery</h1>
+    <p>Klik om de header te tonen, Ik ga daarna weg</p>
+    <button id="show">show header</button>
+    <div class="vierkant"></div>
+</body>
+</html>
