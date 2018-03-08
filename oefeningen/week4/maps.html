@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <style></style>
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+    "use strict"
+    $(document).ready(function(){
+            $("button").click(function(){
+            $.get("http://maps.googleapis.com/maps/api/geocode/json?address=Ternat,Belgie", function(data, status){
+        alert("data: "+data+ "\nStatus: "+ status);
+    });
+    });          
+    });   
+ function verwerkJSON(response) {
+                var i, adres;
+				for (i = 0; i < response.results.length; i += 1) {
+					adres = response.results[i];
+					$("#plaats").text(adres.formatted_address);
+					$("#lat").text(adres.geometry.location.lat);
+					$("#lng").text(adres.geometry.location.lng);
+				}
+			}        
+        
+$(function () {
+				$.ajax({
+					type : 'GET',
+					url : 'http://maps.googleapis.com/maps/api/geocode/json?address=Ternat,Belgie',
+					dataType : 'json',
+					success : verwerkJSON
+				});
+			});
+    </script>
+    </head>
+<body>
+<button> Send http </button>    
+<h2>plaats</h2>
+<p id="plaats"></p>
+<h2>Lat</h2>
+<p id="lat"></p>
+<h2>Longitude</h2>
+<p id="lng"></p>
+</body>
+</html>
