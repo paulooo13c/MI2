@@ -2,7 +2,7 @@
 <html>
 <head>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="password.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Password</title>
     <style>
@@ -22,7 +22,7 @@
         }
         
         body {
-            background-image: url(img/chromewallpaper.png);
+            
             font-family: 'Righteous';
             box-sizing: border-box;
             margin-left: 20vw;
@@ -132,34 +132,36 @@
                 opacity: 0;
             }
         }
-        @media screen and (max-width: 900px) {
-   
-         img {
-            margin-left: 12%;
-            height: 80%;
-            width: 80%;
-        }
-}
     </style>
     <script>
-        function checkPassword() {
-            var password = document.getElementById("passwordBox");
-            var passwordText = password.value;
-            if (passwordText == "104729") {
-                return true;
-            }
-            alert("Access denied! Incorrect password! -2 minutes");
-            return false;
+        function checkPassword1() {
+        var password = null;
+        var passwordText1 = document.getElementById("passwordBox1").value;
+        var passwordText2= document.getElementById("passwordBox2").value;
+        var passwordText3 = document.getElementById("passwordBox3").value;
+        var passwordText4 = document.getElementById("passwordBox4").value;
+        if (passwordText1 == '192' && passwordText2 == '168' && passwordText3 == '1' && passwordText4 == '23') {
+            alert("Correct!");
+            return true;
+        }
+        else {
+        alert("Access denied! Incorrect anwser!");
+        return false; }
         }
     </script>
 </head>
 <body>
-    <h1>Enter vault 1 ?</h1>
+    
+    <img src="img/The_end.png">
     <p class="tab blink">! Warning !</p>
     <p>Authorized personel only</p>
-    <p>Password:
-        <input id="passwordBox" type="password" /> </p>
-    <a href="Puzzel2V.html" onclick="return checkPassword();">
-        <button type="submit">enter</button>
-    </a> <img src=img/vaultwhite.png> </body>
+    <p>Password:</p>
+    <p><input id="passwordBox1" type="password" /> </p>
+    <p><input id="passwordBox2" type="password" /> </p>
+    <p> <input id="passwordBox3" type="password" /> </p>   
+    <p><input id="passwordBox4" type="password" /> </p>
+    <a href="Einde.html" onclick="return checkPassword1();">
+        <button type="button">submit</button>
+    </a>
+    </body>
 </html>
