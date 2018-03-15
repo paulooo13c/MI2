@@ -29,6 +29,7 @@
    
 </style>
 <script>
+    var count = 0;
         function checkPassword1() {      
         var password = null;
         var passwordText1 = document.getElementById("passwordBox1").value;
@@ -38,9 +39,16 @@
         if (passwordText1 == '192' && passwordText2 == '168' && passwordText3 == '1' && passwordText4 == '21') {
             alert("Correct!");
             return true;
+            window.location.href='winning.html'
         }
         else { 
+        ++count;    
         alert("Access denied! Incorrect anwser!");
+        alert(count);    
+        if(count == 3){
+            window.location.href='Losing.html';
+        } 
+        else    
         return false;  
         }
         }
@@ -58,7 +66,7 @@
     <input id="passwordBox2" type="password" /> 
     <input id="passwordBox3" type="password" />  
     <input id="passwordBox4" type="password" /></p>
-    <a href='winning.html' onclick="return checkPassword1();">
+    <a onclick="return checkPassword1();">
         <button type="button">submit</button>
     </a>
     
