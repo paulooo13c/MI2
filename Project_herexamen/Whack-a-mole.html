@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="UTF-8">
+  <title>Mijn game</title>
+    <link rel="stylesheet" href="stijl.css">
+</head>
+<body>
+  <h1>Whack-a-mole</h1>
+  <span class="score">0</span>
+  <!-- ///Het aanklikken van de knop start zorgt er voor dat de functie startSpel getriggerd word -->
+  <button onClick="startSpel()">Start</button>
+      <div class="spel">
+          <div class="molhoop molhoop1">
+            <div class="mol"></div>
+          </div>
+          <div class="molhoop molhoop2">
+            <div class="mol"></div>
+          </div>
+          <div class="molhoop molhoop3">
+            <div class="mol"></div>
+          </div>
+          <div class="molhoop molhoop4">
+            <div class="mol"></div>
+          </div>
+          <div class="molhoop molhoop5">
+            <div class="mol"></div>
+          </div>
+          <div class="molhoop molhoop6">
+            <div class="mol"></div>
+        </div>
+        <div class="molhoop molhoop7">
+            <div class="mol"></div>
+        </div>
+        <div class="molhoop molhoop8">
+            <div class="mol"></div>
+        </div>
+        <div class="molhoop molhoop9">
+            <div class="mol"></div>
+        </div>
+      </div>
+</body>
+
+<script>
+  "use strict";
+  var score = 0;
+
+
+  /* // het spel begint met een score van nul uiteraard. */
+  function startSpel() {
+    score = 0;
+  }
+
+</script>
