@@ -5,8 +5,9 @@
     <link rel="stylesheet" href="stijl.css">
 </head>
 <body>
-  <h1>Whack-a-mole</h1>
-  <span class="score">0</span>
+  <h1>Whack-a-mole<span class="score">0</span></h1>
+  <span id="countdowntimer">60</span>
+
   <!-- ///Het aanklikken van de knop start zorgt er voor dat de functie startSpel getriggerd word -->
   <button onClick="startSpel()">Start</button>
       <div class="spel">
@@ -42,12 +43,42 @@
 
 <script>
   "use strict";
+  var music = new Audio('salsamusic.mp3');
   var score = 0;
+  var timer = 60;
+  /* documetn.querySelectorAll retourneert alle bijhorende css objecten. in dit geval mol en molhoop. */
+  var mollen = document.querySelectorAll('.mol');
+  var molhopen = document.querySelectorAll('.molhoop');
 
-
-  /* // het spel begint met een score van nul uiteraard. */
+  /* // het spel begint met een score van nul. */
   function startSpel() {
     score = 0;
+    updateTimer();
+
   }
 
+  function updateTimer(){
+    var downloadTimer = setInterval(function(){
+    timer--;
+    document.getElementById("countdowntimer").textContent = timer;
+    if (timer == 0)
+    {clearInterval(downloadTimer)}
+    },1000);
+  }
+
+  function popUpTijd(min, max){
+    return Math.random()
+  }
+
+  function randomMolhoop(molhopen){
+    const index = Math.floor( Math.random() * molhopen.length);
+    const molhoop = molhopen[index];
+    console.log(molhoop);
+  }
+
+  function popUp(){
+    const tijd = popUpTijd(200,1000);
+    const molhoop = randomMolhoop(molhopen);
+  }
+    
 </script>
