@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mijn game</title>
     <link rel="stylesheet" href="stijl.css">
 </head>
 <body>
-  <h1>Whack-a-mole<span class="score">0</span></h1>
-  <span id="countdowntimer">60</span>
-
+    <div class="header">
+    <h1>Whack-a-mole<span class="score">0</span></h1> <button>score</button>
+    <span id="countdowntimer">30</span>
+    <button onClick="startSpel()">Start</button>
+    </div>
+    <div class="spel">       
   <!-- ///Het aanklikken van de knop start zorgt er voor dat de functie startSpel getriggerd word -->
-  <button onClick="startSpel()">Start</button>
-      <div class="spel">
+  <!-- <button onClick="startSpel()">Start</button> -->
+      
           <div class="molhoop molhoop1">
             <div class="mol"></div>
           </div>
@@ -45,18 +49,21 @@
   "use strict";
   var music = new Audio('salsamusic.mp3');
   var score = 0;
-  var timer = 60;
-  /* documetn.querySelectorAll retourneert alle bijhorende css objecten. in dit geval mol en molhoop. */
-  var mollen = document.querySelectorAll('.mol');
+  var timer = 30;
+  let tijdOp = false;
+  /* documetn.querySelectorAll retourneert alle bijhorende css objecten. in dit geval mol en molhoop  */
   var molhopen = document.querySelectorAll('.molhoop');
-
+  var mollen = document.querySelectorAll('.mol');
   /* // het spel begint met een score van nul. */
+
   function startSpel() {
     score = 0;
+    timer = 30;
     updateTimer();
-
+    popUp();
+    setTimeout(() => tijdOp = true, 30000)
   }
-
+  /* Timer gevonden op stackoverflow */
   function updateTimer(){
     var downloadTimer = setInterval(function(){
     timer--;
@@ -67,18 +74,24 @@
   }
 
   function popUpTijd(min, max){
-    return Math.random()
+    return Math.round(Math.random() * (max - min) + min)
   }
 
   function randomMolhoop(molhopen){
     const index = Math.floor( Math.random() * molhopen.length);
     const molhoop = molhopen[index];
     console.log(molhoop);
+    return molhoop;
   }
 
   function popUp(){
     const tijd = popUpTijd(200,1000);
     const molhoop = randomMolhoop(molhopen);
+    molhoop.classList.add('up');
+    setTimeout(() => {
+      molhoop.classList.remove('up');
+      if (!tijdOp) popUp(); 
+    }, tijd)
   }
     
 </script>
