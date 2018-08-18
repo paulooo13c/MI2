@@ -7,9 +7,9 @@
 </head>
 <body>
     <div class="header">
-    <h1>Whack-a-mole<span class="score">0</span></h1> <button>score</button>
-    <span id="countdowntimer">30</span>
-    <button onClick="startSpel()">Start</button>
+    <h1>Whack-a-mole<span class="score">0</span></h1> <button id="score" >score</button>
+    <span id="countdowntimer">15</span>
+    <button id="start" onClick="startSpel()">Start</button>
     </div>
     <div class="spel">       
   <!-- ///Het aanklikken van de knop start zorgt er voor dat de functie startSpel getriggerd word -->
@@ -47,29 +47,41 @@
 
 <script>
   "use strict";
-  var music = new Audio('salsamusic.mp3');
+  /* var music = new Audio('salsamusic.mp3'); */
+  var onzichtbaar = false;
   var score = 0;
-  var timer = 30;
+  var timer = 15;
   let tijdOp = false;
   /* documetn.querySelectorAll retourneert alle bijhorende css objecten. in dit geval mol en molhoop  */
+  var scoreBoard = document.querySelector('.score');
   var molhopen = document.querySelectorAll('.molhoop');
   var mollen = document.querySelectorAll('.mol');
   /* // het spel begint met een score van nul. */
-
+  
   function startSpel() {
+    /* music.play(); */
     score = 0;
-    timer = 30;
+    timer = 15;
+    onzichtbaar = true;
+    Verstop();
     updateTimer();
     popUp();
-    setTimeout(() => tijdOp = true, 30000)
+    setTimeout(GameOver(), 15000);
   }
+  
+ 
+
   /* Timer gevonden op stackoverflow */
   function updateTimer(){
     var downloadTimer = setInterval(function(){
-    timer--;
+    timer = timer-1;
     document.getElementById("countdowntimer").textContent = timer;
     if (timer == 0)
-    {clearInterval(downloadTimer)}
+    {clearInterval(downloadTimer)
+    tijdOp = true;
+    onzichtbaar = false;
+    
+    }
     },1000);
   }
 
@@ -93,5 +105,37 @@
       if (!tijdOp) popUp(); 
     }, tijd)
   }
+
+  function whack(e) {
+    if(!e.isTrusted) return;
+    score++;
+    this.parentNode.classList.remove('up');
+    scoreBoard.textContent = score;
+  }
+  mollen.forEach(mol => mol.addEventListener('click', whack));
+
+  function Verstop(){
+    onzichtbaar = true;
+    if(onzichtbaar){
+      document.getElementById('start').style.visibility = 'hidden';
+      document.getElementById('score').style.visibility = 'hidden';
+    }
+    else{
+      document.getElementById('start').style.visibility = 'visible';
+      document.getElementById('score').style.visibility = 'hidden';
+    }
+  }
+
+  function GameOver(){
+    
+    location.reload();
+  
+    var onzichtbaar = false;
+    var score = 0;
+    var timer = 15;
+    let tijdOp = false;
+  }
+
+
     
 </script>
