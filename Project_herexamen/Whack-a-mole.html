@@ -132,9 +132,8 @@
       
     }
   }
-
+/* van de voorbeeld oefenigen uit de les gehaald */
   function saveMe() {
-  // opslaan als tekst
   localStorage.highscore = JSON.stringify(score);
   if  (score > localStorage.getItem("highscore"))
   {
@@ -143,8 +142,6 @@
   }
 
   function loadScore() {
-  // haal de waarde van de key 'ik' op 
-  // en zet deze terug om naar een JS object
   let highscore = JSON.parse(localStorage.score);
   console.table(highscore);
 }
