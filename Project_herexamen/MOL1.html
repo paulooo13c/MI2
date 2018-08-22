@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="UTF-8">
+  <title>Whack A Mole Game!</title>
+    <link rel="stylesheet" href="style.css">
+  <link href='https://fonts.googleapis.com/css?family=Amatic+SC:400,700' rel='stylesheet' type='text/css'>
+</head>
+<body>
+
+  <h1>Whack-a-mole! <span class="score">0</span></h1>
+  <button onClick="startSpel()">Start!</button>
+
+  <div class="spel">
+    <div class="molhoop molhoop1">
+      <div class="mol"></div>
+    </div>
+    <div class="molhoop molhoop2">
+      <div class="mol"></div>
+    </div>
+    <div class="molhoop molhoop3">
+      <div class="mol"></div>
+    </div>
+    <div class="molhoop molhoop4">
+      <div class="mol"></div>
+    </div>
+    <div class="molhoop molhoop5">
+      <div class="mol"></div>
+    </div>
+    <div class="molhoop molhoop6">
+      <div class="mol"></div>
+    </div> 
+  </div>
+
+<script>
+  letscore = 0;
+  var scoreBoard = document.querySelector('.score');
+  var molhopen = document.querySelectorAll('.molhoop');
+  var mollen = document.querySelectorAll('.mol');
+  let laatsteMolhoop;
+  let TijdIsOp = false;
+  
+    
+  function startSpel() {
+    score = 0;
+    scoreBoard.textContent = 0;
+    TijdIsOp = false;
+    Omhoog();
+    setTimeout(() => TijdIsOp = true, 10000)
+  }
+    
+  function randomTijd(min, max) {
+    return Math.round(Math.random() * (max - min) + min);
+  }
+  function randomMolhoop(molhopen) {
+    const idx = Math.floor(Math.random() * molhopen.length);
+    const molhoop = molhopen[idx];
+    if (molhoop === laatsteMolhoop) {
+      console.log('dat is dezelfde');
+      return randomMolhoop(molhopen);
+    }
+    laatsteMolhoop = molhoop;
+    return molhoop;
+  }
+  function Omhoog() {
+    const tijd = randomTijd(500, 1000);
+    molhoop.classList.add('up');
+    const molhoop = randomMolhoop(molhopen);
+    setTimeout(() => {
+      molhoop.classList.remove('up');
+      if (!TijdIsOp) Omhoog();
+    }, tijd);
+  } 
+
+  function whack(e) {
+    if(!e.isTrusted) return;
+    score++;
+    this.parentNode.classList.remove('up');
+    scoreBoard.textContent = score;
+  }
+  mollen.forEach(mol => mol.addEventListener('click', whack));
+    
+</script>
+</body>
+</html>
