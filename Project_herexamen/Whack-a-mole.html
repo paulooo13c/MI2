@@ -7,7 +7,7 @@
 </head>
 <body>
     <div class="header">
-    <h1>Whack-a-mole<span class="score">0</span></h1> <button id="score" >score</button>
+    <h1>Whack-a-mole<span class="score">0</span></h1> 
     <span id="countdowntimer">15</span>
     <button id="start" onClick="startSpel()">Start</button>
     </div>
@@ -52,6 +52,7 @@
   var score = 0;
   var timer = 15;
   let tijdOp = false;
+  var highScore;
   /* documetn.querySelectorAll retourneert alle bijhorende css objecten. in dit geval mol en molhoop  */
   var scoreBoard = document.querySelector('.score');
   var molhopen = document.querySelectorAll('.molhoop');
@@ -60,15 +61,21 @@
   
   function startSpel() {
     /* music.play(); */
-    score = 0;
+    score ;
     timer = 15;
     onzichtbaar = true;
     Verstop();
     updateTimer();
     popUp();
-    setTimeout(GameOver(), 15000);
+    setTimeout(() => tijdOp = true, 15000)
+    setTimeout(function(){ go(); }, 15000);
+    saveMe();
   }
   
+  function go (){
+    saveMe();
+    window.location.href = "Gameover.html";
+  }
  
 
   /* Timer gevonden op stackoverflow */
@@ -97,7 +104,7 @@
   }
 
   function popUp(){
-    const tijd = popUpTijd(200,1000);
+    const tijd = popUpTijd(200,1500);
     const molhoop = randomMolhoop(molhopen);
     molhoop.classList.add('up');
     setTimeout(() => {
@@ -118,23 +125,29 @@
     onzichtbaar = true;
     if(onzichtbaar){
       document.getElementById('start').style.visibility = 'hidden';
-      document.getElementById('score').style.visibility = 'hidden';
+      
     }
     else{
       document.getElementById('start').style.visibility = 'visible';
-      document.getElementById('score').style.visibility = 'hidden';
+      
     }
   }
 
-  function GameOver(){
-    
-    location.reload();
-  
-    var onzichtbaar = false;
-    var score = 0;
-    var timer = 15;
-    let tijdOp = false;
+  function saveMe() {
+  // opslaan als tekst
+  localStorage.highscore = JSON.stringify(score);
+  if  (score > localStorage.getItem("highscore"))
+  {
+    localStorage.setItem("highscore",score);
   }
+  }
+
+  function loadScore() {
+  // haal de waarde van de key 'ik' op 
+  // en zet deze terug om naar een JS object
+  let highscore = JSON.parse(localStorage.score);
+  console.table(highscore);
+}
 
 
     

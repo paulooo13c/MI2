@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Gameover</title>
+  <link rel="stylesheet" href="stijl.css">
+
+</head>
+<body>
+<h1>Gameover</h1>
+<h2 >Highscore<span class="highscore">0</span> </h2> 
+<button onclick="location.href = 'Whack-a-mole.html'" >retry</button>
+<script>
+var highScoreBoard = document.querySelector('.highscore');
+highScoreBoard.textContent = JSON.parse(localStorage.highscore);
+
+</script>
+</body>
+</html>
+
