@@ -134,9 +134,10 @@
   }
 /* van de voorbeeld oefenigen uit de les gehaald */
   function saveMe() {
-  localStorage.highscore = JSON.stringify(score);
+ /*  localStorage.highscore = JSON.stringify(score); */
   if  (score > localStorage.getItem("highscore"))
   {
+    localStorage.highscore = JSON.stringify(score);
     localStorage.setItem("highscore",score);
   }
   }
